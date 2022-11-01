@@ -1,4 +1,6 @@
-Оптимальным кол-вои тестов является проверка каждого возможного ответа согластно спецификации 
+Оптимальным кол-вои тестов является проверка каждого возможного ответа согласно спецификации 
+
+==============================================================================================
 
 [Тест 1] [Success]
 
@@ -19,13 +21,15 @@
   "expiredAt": "2015-07-20T15:49:04-07:00"
 }
 
+==============================================================================================
+
 [Тест 2] [Bad Request]
 
 Отправляем Request
 
 -POST
 -header "Authorization: OAuth anonymousToken", "accept: */*", "Content-Type: application/json"
--нет
+-body {"loginz": "login", "passwordos": "password"}
 
 Ожидаем Response
 
@@ -38,8 +42,53 @@
   "message": "string"
 }
 
+==============================================================================================
 
-[Тест 3][Unauthorized]
+
+[Тест 3] [Bad Request]
+
+Отправляем Request
+
+-POST
+-header "Authorization: OAuth anonymousToken", "accept: */*", "Content-Type: application/json"
+-body {"login": "login"}
+
+Ожидаем Response
+
+-400
+-нет
+-{
+  "timestamp": "2022-11-01T07:17:16.236Z",
+  "status": 0,
+  "error": "string",
+  "message": "string"
+}
+
+==============================================================================================
+
+
+[Тест 4] [Bad Request]
+
+Отправляем Request
+
+-POST
+-header "Authorization: OAuth anonymousToken", "accept: */*", "Content-Type: application/json"
+-body {"login": 1, "password": false }
+
+Ожидаем Response
+
+-400
+-нет
+-{
+  "timestamp": "2022-11-01T07:17:16.236Z",
+  "status": 0,
+  "error": "string",
+  "message": "string"
+}
+
+==============================================================================================
+
+[Тест 5][Unauthorized]
 
 Отправляем Request
 
@@ -58,7 +107,10 @@
   "message": "string"
 }
 
-[Тест 4][Not Found] при условии, что есть проверка на наличие такого пользователь
+==============================================================================================
+
+
+[Тест 6][Not Found] при условии, что есть проверка на наличие такого пользователь
 
 Отправляем Request
 
@@ -77,7 +129,10 @@
   "message": "string"
 }
 
-[Тест 5] [Bad Request]
+==============================================================================================
+
+
+[Тест 7] [500 Network Error]
 
 Отправляем Request
 
@@ -95,4 +150,47 @@
   "error": "string",
   "message": "string"
 }
-  
+
+==============================================================================================
+
+[Тест 8] [500 Network Error]
+
+Отправляем Request
+
+-POST
+-header "Authorization: OAuth anonymousToken", "accept: */*", "Content-Type: application/json"
+-body []
+
+Ожидаем Response
+
+-500
+-нет
+{
+  "timestamp": "2022-11-01T08:31:29.906Z",
+  "status": 0,
+  "error": "string",
+  "message": "string"
+}
+
+==============================================================================================
+
+[Тест 9] [500 Network Error]
+
+Отправляем Request
+
+-POST
+-header "Authorization: OAuth anonymousToken", "accept: */*", "Content-Type: application/json"
+-нет
+
+Ожидаем Response
+
+-500
+-нет
+{
+  "timestamp": "2022-11-01T08:31:29.906Z",
+  "status": 0,
+  "error": "string",
+  "message": "string"
+}
+
+==============================================================================================
